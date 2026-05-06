@@ -1,0 +1,305 @@
+Project  Title:  
+Development  of  a  Web-Based  Integrated  Accounting  System  with  Digital  Financial  Services  
+for
+ 
+TUP
+ 
+Visayas
+ 
+ 
+1.  System  Overview  
+1.1  Short  Description  
+-  A  web-based  Accounting  System  with  Digital  Financial  Services  for  our  university  
+(TUP
+ 
+Visayas).
+  
+The
+ 
+goal
+ 
+of
+ 
+this
+ 
+system
+ 
+is
+ 
+to
+ 
+replace
+ 
+the
+ 
+manual
+ 
+paper
+ 
+transactions
+ 
+with
+ 
+a
+ 
+centralized
+ 
+system
+ 
+for
+ 
+students
+ 
+and
+ 
+anyone
+ 
+alike,
+ 
+for
+ 
+them
+ 
+to
+ 
+transact
+ 
+online.
+ 
+ 
+ 
+1.2  Type  of  System:  
+-  Web-Based  System  
+ 
+1.3  Target  Users:  
+-  Students  and  Accounting  Staff/Cashiers  
+ 
+2.  Problem  Definition  
+2.1  Current  System  (Manual  /  Existing  Process):  
+-  Paper  and  Face-to-Face  Transaction  
+2.2  Problems  Encountered:  
+-  Still  Using  Paper  -  Face-to-face  only  -  No  online  presence  and  information  available  
+ 
+2.3  Why  the  Existing  System  is  Inefficient:  
+-  Because  it's  outdated,  and  other  universities  are  adapting  to  online  transactions.  
+Also,
+ 
+students
+ 
+are
+ 
+needed
+ 
+to
+ 
+go
+ 
+to
+ 
+school
+ 
+just
+ 
+for
+ 
+a
+ 
+transaction,
+ 
+and
+ 
+it's
+ 
+a
+ 
+hassle
+ 
+for
+ 
+everyone
+ 
+far
+ 
+from
+ 
+the
+ 
+university.
+ 
+ 
+3.  Proposed  System  Features  
+3.1  Core  Features:  
+-  Online  Transactions  -  UX  friendly  forms  for  transactions  -  Reliable  account  verification  using  student  ID  information,  for   -  Display  information  like  the  location  of  the  office,  Board  of  Staffs,  etc.  
+ 
+3.2  Digital  Financial  Services:  
+-  Applying  for  a  summer  class  -  Paying  for  school  fees  -  School  materials  Shop  (uniform  textile,  lanyard,  and  ID)  
+ 
+3.3  User  Roles  &  Permissions:  
+-  Admin  and  Staff:  Manage  Transactions,  Verify  Students,  and  everything  related  to  
+accounting
+ 
+and
+ 
+finance.
+ -  Student:  Access  to  the  online  accounting  system  for  transactions,  etc.  
+ 
+4.  Sample  System  Workflow  
+-  Landing  Page:  Login  (if  invalid,  repeat)  >  Homepage/Dashboard  -  Homepage/Dashboard  >  Pay  Fees  |  Apply  Summer  Class  |  Buy  Products  |  
+Transaction
+ 
+History
+ 
+|
+ 
+Information
+ 
+Board
+ 
+>
+ 
+Logout
+ -  Pay  Fees  >   Form  (Selec  >  Pay  (if  invalid  payment,  error)  >  Submit  >  Record  
+Payment/Generate
+ 
+Receipt
+ 
+>
+ 
+Homepage/Dashboard
+ -  Apply  Summer  Class  >  Form  [Select  Class  >  Is  Student  Eligible  (if  not,  display  “Not  
+Eligible”
+ 
+then
+ 
+proceed
+ 
+to
+ 
+Homepage)
+ 
+>
+ 
+Show
+ 
+available
+ 
+subject
+ 
+>
+ 
+Select
+ 
+subject
+ 
+>
+ 
+Slot
+ 
+available
+ 
+(if
+ 
+not,
+ 
+display
+ 
+“Slots
+ 
+full.”
+ 
+then
+ 
+repeat)
+ 
+>
+  
+Pay
+ 
+(if
+ 
+invalid
+ 
+payment,
+ 
+error)
+ 
+>
+ 
+Submit
+ 
+>
+ 
+Record
+ 
+Enrollment/Generate
+ 
+Receipt
+ 
+>
+ 
+Homepage/Dashboard
+ -  Buy  Products  >  Buy  uniform,  lanyard,  ID  >  Form  >  Pay  (if  invalid  payment,  error)  >  
+Submit
+ 
+>
+ 
+Record
+ 
+Payment/Generate
+ 
+Receipt
+ 
+>
+ 
+Homepage/Dashboard
+ -  Transaction  History  >  Logs  of  Transactions  >  Homepage/Dashboard  -  Information  Board  >  About  TUP  Visayas  Accounting  |  Office  location  |  Board  of  Staffs  -  Every  page  after  logging  in  >  Logout   
+ 
+5.  Data  /  Information  to  be  Stored  
+-  Student  Information  
+-  Transaction  Records  
+-  Payment  Status  
+-  User  Accounts  
+ 
+6.  Technology  Stack  
+Frontend:  Vanilla  web  languages  (HTML,  CSS,  JS)  
+Backend:  PHP,  APIs  for  transaction  (mainly  GCash)  
+Database:  MySQL  
+ 
+7.  Security  &  Constraints  
+Security  Features:  
+-  Login  authentication  -  Role-based  access  -  Secure  online  transaction  
+Limitations:  
+-  Requires  internet  -  Designed  for  TUP  Visayas  only  
+ 
+8.  Evaluation  Plan  
+Method:  PSSUQ  and  Survey  
+Respondents:  10  Students,  2  IT  Specialists,  and  1  Accounting  Staff  
+ 
+9.  Unique  Selling  Point  (USP):  
+-  Online  compared  to  Paper.  No  time-consuming  face-to-face  transaction  required.  
+Safe
+ 
+and
+ 
+reliable
+ 
+payment.
+ 
+Centralized
+ 
+information
+ 
+and
+ 
+digital
+ 
+presence
+ 
+of
+ 
+TUP
+ 
+Visayas
+ 
+accounting.
+ 
