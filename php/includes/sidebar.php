@@ -4,26 +4,10 @@ $hideSidebarPages = ['login.php'];
 
 if (!in_array($currentPage, $hideSidebarPages)):
 ?>
-<style>
-    .sidebar { width: 260px; background-color: var(--bg-card); border-right: 1px solid #e9ecef; display: flex; flex-direction: column; box-shadow: var(--shadow-sm); z-index: 10; }
-    .sidebar-header { padding: 1.5rem; border-bottom: 1px solid #e9ecef; display: flex; align-items: center; gap: 0.75rem; color: var(--tup-maroon); font-family: var(--font-heading); font-weight: 700; font-size: 1.15rem; line-height: 1.2; }
-    .sidebar-logo-placeholder { width: 35px; height: 35px; background-color: var(--tup-maroon); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8rem; }
-    .sidebar-menu { list-style: none; padding: 1rem 0; flex: 1; overflow-y: auto; }
-    .sidebar-menu li a { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1.5rem; color: var(--text-main); font-weight: 500; transition: all 0.2s ease; }
-    .sidebar-menu li a:hover, .sidebar-menu li.active a { background-color: rgba(128, 0, 0, 0.05); color: var(--tup-maroon); border-right: 3px solid var(--tup-maroon); }
-    .sidebar-menu i { font-size: 1.25rem; }
-    .sidebar-footer { padding: 1rem 1.5rem; border-top: 1px solid #e9ecef; }
-    
-    @media (max-width: 767px) {
-        .sidebar { position: fixed; left: -260px; top: 0; bottom: 0; transition: left 0.3s ease; }
-        .sidebar.open { left: 0; }
-    }
-</style>
-
 <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
         <div class="sidebar-logo-placeholder">LOGO</div>
-        <div>TUPV<br><span style="font-size: 0.9rem; font-weight: 500;">Accounting Office</span></div>
+        <div class="brand-name">TUPV<span class="brand-subtitle">Accounting Office</span></div>
     </div>
     <ul class="sidebar-menu">
         <?php if($isLoggedIn): ?>
@@ -39,7 +23,7 @@ if (!in_array($currentPage, $hideSidebarPages)):
     
     <?php if($isLoggedIn): ?>
     <div class="sidebar-footer">
-        <a href="logout.php" class="btn btn-outline" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+        <a href="logout.php" class="btn btn-outline" style="width: 100%;">
             <i class="ph ph-sign-out"></i> Logout
         </a>
     </div>

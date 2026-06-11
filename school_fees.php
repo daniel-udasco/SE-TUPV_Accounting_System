@@ -2,95 +2,82 @@
 require_once 'php/includes/auth.php';
 require_once 'php/includes/header.php';
 ?>
-<style>
-    .page-header { margin-bottom: 2rem; }
-    
-    .form-section { margin-bottom: 2rem; }
-    .form-section h3 { font-size: 1.1rem; margin-bottom: 1rem; border-bottom: 1px solid #e9ecef; padding-bottom: 0.5rem; color: var(--text-main); }
-
-    .summary-box { background-color: var(--bg-card); border: 1px solid var(--tup-maroon); border-radius: 0; padding: 1.5rem; margin-top: 2rem; box-shadow: var(--shadow-sm); }
-    .summary-row { display: flex; justify-content: space-between; margin-bottom: 0.5rem; color: var(--text-muted); }
-    .summary-total { display: flex; justify-content: space-between; margin-top: 1rem; padding-top: 1rem; border-top: 2px solid #e9ecef; font-weight: 700; font-size: 1.5rem; color: var(--tup-maroon); }
-
-    .payment-methods { display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; }
-    .payment-method { background: var(--bg-card); border: 2px solid #e9ecef; border-radius: 0; padding: 1.5rem 1rem; flex: 1; min-width: 150px; text-align: center; cursor: pointer; transition: all 0.2s ease; color: var(--text-main); }
-    .payment-method:hover { border-color: var(--tup-gray); }
-    .payment-method.selected { border-color: var(--gcash-blue); background-color: rgba(0, 123, 254, 0.05); font-weight: 600; color: var(--gcash-blue); }
-
-    .checkout-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center; }
-    .checkout-content { background: var(--bg-card); padding: 3rem; max-width: 500px; width: 90%; text-align: center; border-top: 5px solid var(--tup-maroon); }
-</style>
 
 <div class="page-header">
-    <h1>Pay School Fees</h1>
-    <p class="text-muted">Select the specific fee you need to settle. Note: As a state-funded university, standard tuition is not applicable.</p>
+    <div>
+        <span class="eyebrow"><i class="ph ph-credit-card"></i> Fee checkout</span>
+        <h1>Pay School Fees</h1>
+        <p class="text-muted">Select an approved fee, enter the assessed amount, and choose how you want to pay.</p>
+    </div>
+    <a href="transactions.php" class="btn btn-outline"><i class="ph ph-clock-counter-clockwise"></i> History</a>
 </div>
 
-<div class="card" style="border-radius: 0;">
-    <form id="paymentForm">
+<form id="paymentForm" class="form-shell">
+    <div class="panel">
         <div class="form-section">
-            <h3>1. Select Fee Type</h3>
+            <h3><i class="ph ph-list-checks"></i> Fee Type</h3>
             <div class="form-group">
-                <select id="feeType" class="form-control" required style="border-radius: 0;">
+                <label for="feeType" class="form-label">Approved payment category</label>
+                <select id="feeType" class="form-control" required>
                     <option value="" disabled selected>Select a fee to pay...</option>
                     <option value="establish_id">Establish ID</option>
                     <option value="id_replacement">ID Replacement</option>
                     <option value="graduation_fee">Graduation Fee</option>
                     <option value="transcript">Transcript of Records</option>
-                    <option value="other">[Placeholder] Other Approved Fees</option>
+                    <option value="other">Other Approved Fees</option>
                 </select>
             </div>
         </div>
 
         <div class="form-section">
-            <h3>2. Amount</h3>
+            <h3><i class="ph ph-currency-circle-dollar"></i> Amount</h3>
             <div class="form-group">
-                <label class="form-label">Amount to Pay (PHP)</label>
-                <input type="number" id="amount" class="form-control" placeholder="e.g. 150" min="50" required style="border-radius: 0;">
+                <label for="amount" class="form-label">Amount to pay (PHP)</label>
+                <input type="number" id="amount" class="form-control" placeholder="e.g. 150" min="50" required>
             </div>
         </div>
 
         <div class="form-section">
-            <h3>3. Select Payment Method</h3>
+            <h3><i class="ph ph-contactless-payment"></i> Payment Method</h3>
             <div class="payment-methods">
-                <div class="payment-method selected" id="method-gcash" onclick="selectMethod('gcash')">
-                    <i class="ph ph-device-mobile" style="font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--gcash-blue);"></i><br>
-                    GCash
-                </div>
-                <div class="payment-method" id="method-bank" onclick="selectMethod('bank')">
-                    <i class="ph ph-bank" style="font-size: 2.5rem; margin-bottom: 0.5rem;"></i><br>
-                    Bank Transfer
-                </div>
-                <div class="payment-method" id="method-otc" onclick="selectMethod('otc')">
-                    <i class="ph ph-storefront" style="font-size: 2.5rem; margin-bottom: 0.5rem;"></i><br>
-                    Over-the-Counter
-                </div>
+                <button type="button" class="payment-method selected" id="method-gcash" onclick="selectMethod('gcash')">
+                    <i class="ph ph-device-mobile"></i>
+                    <span>GCash</span>
+                </button>
+                <button type="button" class="payment-method" id="method-bank" onclick="selectMethod('bank')">
+                    <i class="ph ph-bank"></i>
+                    <span>Bank Transfer</span>
+                </button>
+                <button type="button" class="payment-method" id="method-otc" onclick="selectMethod('otc')">
+                    <i class="ph ph-storefront"></i>
+                    <span>Over-the-Counter</span>
+                </button>
             </div>
             <input type="hidden" id="selectedMethod" value="gcash">
         </div>
+    </div>
 
-        <div class="summary-box">
-            <div class="summary-row"><span>Subtotal:</span> <span id="summarySubtotal">₱ 0.00</span></div>
-            <div class="summary-row"><span>Convenience Fee:</span> <span>₱ 15.00</span></div>
-            <div class="summary-total"><span>Total to Pay:</span> <span id="summaryTotal">₱ 15.00</span></div>
-        </div>
+    <aside class="summary-box">
+        <span class="eyebrow"><i class="ph ph-receipt"></i> Summary</span>
+        <div class="summary-row"><span>Subtotal</span> <span id="summarySubtotal">&#8369; 0.00</span></div>
+        <div class="summary-row"><span>Convenience Fee</span> <span>&#8369; 15.00</span></div>
+        <div class="summary-total"><span>Total</span> <span id="summaryTotal">&#8369; 15.00</span></div>
+        <button type="button" class="btn btn-primary" id="btnProceed" style="width: 100%; margin-top: 1rem;" disabled onclick="showCheckoutModal()">
+            Proceed to Payment <i class="ph ph-arrow-right"></i>
+        </button>
+    </aside>
+</form>
 
-        <div style="margin-top: 2rem; text-align: right;">
-            <button type="button" class="btn btn-primary" id="btnProceed" style="font-size: 1.1rem; padding: 1rem 3rem; border-radius: 0; text-transform: uppercase;" disabled onclick="showCheckoutModal()">Proceed to Payment <i class="ph ph-arrow-right"></i></button>
-        </div>
-    </form>
-</div>
-
-<!-- Simulation Checkout Modal -->
 <div class="checkout-modal" id="checkoutModal">
     <div class="checkout-content">
-        <h2 style="margin-bottom: 1rem; color: var(--text-main);">Confirm Payment</h2>
-        <p class="text-muted" style="margin-bottom: 2rem;">You are about to process a payment of <strong id="modalTotalAmount"></strong> via <strong id="modalMethod">GCash</strong>.</p>
-        
-        <button type="button" class="btn btn-primary" style="width: 100%; margin-bottom: 1rem; padding: 1rem; border-radius: 0; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; background-color: var(--tup-maroon); border: none;" onclick="processSimulation()">
-            <i class="ph ph-check-circle"></i> Confirm & Pay Simulation
-        </button>
-        <button type="button" class="btn btn-outline" style="width: 100%; padding: 1rem; border-radius: 0; font-size: 1.1rem;" onclick="closeCheckoutModal()">Cancel</button>
+        <h2>Confirm Payment</h2>
+        <p class="text-muted">You are about to process <strong id="modalTotalAmount"></strong> via <strong id="modalMethod">GCash</strong>.</p>
+        <div class="checkout-actions">
+            <button type="button" class="btn btn-primary" onclick="processSimulation()">
+                <i class="ph ph-check-circle"></i> Confirm and Pay Simulation
+            </button>
+            <button type="button" class="btn btn-outline" onclick="closeCheckoutModal()">Cancel</button>
+        </div>
     </div>
 </div>
 
@@ -101,7 +88,7 @@ require_once 'php/includes/header.php';
         document.querySelectorAll('.payment-method').forEach(el => el.classList.remove('selected'));
         document.getElementById('method-' + method).classList.add('selected');
         document.getElementById('selectedMethod').value = method;
-        
+
         let methodText = 'GCash';
         if (method === 'bank') methodText = 'Bank Transfer';
         if (method === 'otc') methodText = 'Over-the-Counter';
@@ -112,11 +99,11 @@ require_once 'php/includes/header.php';
         let amount = parseFloat(e.target.value) || 0;
         let total = amount > 0 ? amount + 15 : 0;
         currentTotal = total;
-        
-        document.getElementById('summarySubtotal').innerText = '₱ ' + amount.toFixed(2);
-        document.getElementById('summaryTotal').innerText = '₱ ' + total.toFixed(2);
-        document.getElementById('modalTotalAmount').innerText = '₱ ' + total.toFixed(2);
-        
+
+        document.getElementById('summarySubtotal').innerText = '\u20B1 ' + amount.toFixed(2);
+        document.getElementById('summaryTotal').innerText = '\u20B1 ' + total.toFixed(2);
+        document.getElementById('modalTotalAmount').innerText = '\u20B1 ' + total.toFixed(2);
+
         document.getElementById('btnProceed').disabled = amount <= 0;
     });
 
@@ -131,7 +118,7 @@ require_once 'php/includes/header.php';
     async function processSimulation() {
         const feeType = document.getElementById('feeType').options[document.getElementById('feeType').selectedIndex].text;
         const method = document.getElementById('selectedMethod').value;
-        
+
         try {
             const response = await fetch('php/api.php?action=create_transaction', {
                 method: 'POST',
