@@ -44,7 +44,6 @@ try {
         <h1>Transaction History</h1>
         <p class="text-muted">Track all payment attempts, receipts, and Accounting Office confirmations.</p>
     </div>
-    <a href="school_fees.php" class="btn btn-primary"><i class="ph ph-plus"></i> New Payment</a>
 </div>
 
 <div class="filters-bar">

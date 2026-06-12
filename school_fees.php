@@ -9,7 +9,7 @@ require_once 'php/includes/header.php';
         <h1>Pay School Fees</h1>
         <p class="text-muted">Select an approved fee, enter the assessed amount, and choose how you want to pay.</p>
     </div>
-    <a href="transactions.php" class="btn btn-outline"><i class="ph ph-clock-counter-clockwise"></i> History</a>
+    <a href="transactions.php?type=fees" class="btn btn-outline"><i class="ph ph-clock-counter-clockwise"></i> School Fees History</a>
 </div>
 
 <form id="paymentForm" class="form-shell">

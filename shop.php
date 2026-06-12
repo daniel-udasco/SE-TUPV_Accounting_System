@@ -18,7 +18,7 @@ try {
         <h1>TUPV Merch Shop</h1>
         <p class="text-muted">Reserve uniforms, lanyards, and university materials online, then pick them up at the Accounting Office.</p>
     </div>
-    <a href="transactions.php?type=materials" class="btn btn-outline"><i class="ph ph-receipt"></i> Orders</a>
+    <a href="transactions.php?type=materials" class="btn btn-outline"><i class="ph ph-receipt"></i> Orders History</a>
 </div>
 
 <form id="shopForm">

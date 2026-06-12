@@ -22,7 +22,7 @@ if ($isEligible) {
         <h1>Summer Class Application</h1>
         <p class="text-muted">Select available subjects and review your assessment before payment.</p>
     </div>
-    <a href="transactions.php" class="btn btn-outline"><i class="ph ph-receipt"></i> Payment History</a>
+    <a href="transactions.php?type=summer_class" class="btn btn-outline"><i class="ph ph-receipt"></i> Summer Class History</a>
 </div>
 
 <?php if ($isEligible): ?>
