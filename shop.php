@@ -58,9 +58,12 @@ try {
     <div class="checkout-content">
         <h2>Confirm Your Order</h2>
         <p class="text-muted">You are about to place an order for university materials and process the payment simulation.</p>
-        <div class="checkout-actions">
-            <button type="button" class="btn btn-payment" onclick="processSimulation()">
+        <div class="checkout-actions" style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%;">
+            <button type="button" class="btn btn-payment" onclick="processSimulation('gcash')">
                 <i class="ph ph-device-mobile"></i> Pay with GCash Simulation
+            </button>
+            <button type="button" class="btn btn-payment" onclick="processSimulation('bank')" style="background-color: var(--tup-gray); color: white;">
+                <i class="ph ph-bank"></i> Pay with Bank Transfer Simulation
             </button>
             <button type="button" class="btn btn-outline" onclick="closeCheckoutModal()">Cancel</button>
         </div>
@@ -98,7 +101,7 @@ try {
         document.getElementById('checkoutModal').style.display = 'none';
     }
 
-    async function processSimulation() {
+    async function processSimulation(method) {
         try {
             const response = await fetch('php/api.php?action=create_transaction', {
                 method: 'POST',
@@ -108,7 +111,7 @@ try {
                     description: 'Materials Shop Purchase',
                     type: 'materials',
                     amount: currentTotal,
-                    method: 'gcash'
+                    method: method
                 })
             });
             const result = await response.json();

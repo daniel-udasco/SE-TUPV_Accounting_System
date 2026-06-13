@@ -100,7 +100,6 @@ try {
             <h2 style="font-size: 1.05rem;">Recent Transactions</h2>
             <p class="text-muted" style="font-size: 0.86rem;">Latest activity from your account.</p>
         </div>
-        <a href="transactions.php" class="btn btn-outline">View All</a>
     </div>
 
     <?php if (empty($transactions)): ?>
@@ -129,6 +128,11 @@ try {
                     <?php endforeach; ?>
                 </tbody>
             </table>
+        </div>
+        <div style="margin-top: 1rem; text-align: center;">
+            <a href="transactions.php" style="font-weight: 700; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.35rem; color: var(--tup-maroon);">
+                View All Transactions <i class="ph ph-arrow-right"></i>
+            </a>
         </div>
     <?php endif; ?>
 </div>

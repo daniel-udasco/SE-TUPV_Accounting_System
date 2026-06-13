@@ -9,7 +9,9 @@ require_once 'php/includes/header.php';
         <p>Find office hours, location details, official contact channels, and the current staff directory for student transactions.</p>
         <div class="hero-actions">
             <a href="#contact" class="btn btn-primary"><i class="ph ph-phone-call"></i> Contact Office</a>
+            <?php if (!$isLoggedIn): ?>
             <a href="login.php" class="btn btn-outline"><i class="ph ph-sign-in"></i> Student Login</a>
+            <?php endif; ?>
         </div>
     </div>
     <div class="hero-visual">
@@ -74,31 +76,61 @@ require_once 'php/includes/header.php';
             <h2>Board of Staff</h2>
         </div>
     </div>
-    <div class="staff-grid">
-        <div class="profile-card">
-            <div class="profile-img"><i class="ph ph-user"></i></div>
-            <div class="profile-name">Eric A. Malinao, Ph.D.</div>
-            <div class="profile-title">Campus Director</div>
+    <div class="staff-tree-container">
+        <!-- Level 1: Campus Director -->
+        <div class="tree-node">
+            <div class="profile-card">
+                <div class="profile-img"><i class="ph ph-user"></i></div>
+                <div class="profile-name">Eric A. Malinao, Ph.D.</div>
+                <div class="profile-title">Campus Director</div>
+            </div>
         </div>
-        <div class="profile-card">
-            <div class="profile-img"><i class="ph ph-user"></i></div>
-            <div class="profile-name">[Name Here]</div>
-            <div class="profile-title">Chief Administrative Officer</div>
+        
+        <div class="tree-line"></div>
+        
+        <!-- Level 2: Chief Administrative Officer -->
+        <div class="tree-node">
+            <div class="profile-card">
+                <div class="profile-img"><i class="ph ph-user"></i></div>
+                <div class="profile-name">Atty. Sarah J. Concepcion</div>
+                <div class="profile-title">Chief Administrative Officer</div>
+            </div>
         </div>
-        <div class="profile-card">
-            <div class="profile-img"><i class="ph ph-user"></i></div>
-            <div class="profile-name">Mrs. Jane Doe, CPA</div>
-            <div class="profile-title">Head of Accounting</div>
+        
+        <div class="tree-line"></div>
+        
+        <!-- Level 3: Accounting Head -->
+        <div class="tree-node">
+            <div class="profile-card">
+                <div class="profile-img"><i class="ph ph-user"></i></div>
+                <div class="profile-name">Mrs. Jane Doe, CPA</div>
+                <div class="profile-title">Accounting Head</div>
+            </div>
         </div>
-        <div class="profile-card">
-            <div class="profile-img"><i class="ph ph-user"></i></div>
-            <div class="profile-name">Accountant 1</div>
-            <div class="profile-title">Assessment Officer</div>
-        </div>
-        <div class="profile-card">
-            <div class="profile-img"><i class="ph ph-user"></i></div>
-            <div class="profile-name">Accountant 2</div>
-            <div class="profile-title">Cashier</div>
+        
+        <div class="tree-children">
+            <!-- Level 4: Line spread to three staffs -->
+            <div class="tree-node child">
+                <div class="profile-card">
+                    <div class="profile-img"><i class="ph ph-user"></i></div>
+                    <div class="profile-name">Mr. John Smith</div>
+                    <div class="profile-title">Accountant II</div>
+                </div>
+            </div>
+            <div class="tree-node child">
+                <div class="profile-card">
+                    <div class="profile-img"><i class="ph ph-user"></i></div>
+                    <div class="profile-name">Ms. Maria Santos</div>
+                    <div class="profile-title">Administrative Aide VI</div>
+                </div>
+            </div>
+            <div class="tree-node child">
+                <div class="profile-card">
+                    <div class="profile-img"><i class="ph ph-user"></i></div>
+                    <div class="profile-name">Mr. James Dela Cruz</div>
+                    <div class="profile-title">Administrative Aide III</div>
+                </div>
+            </div>
         </div>
     </div>
 </section>

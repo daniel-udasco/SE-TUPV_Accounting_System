@@ -21,9 +21,9 @@ require_once 'php/includes/header.php';
                 <select id="feeType" class="form-control" required>
                     <option value="" disabled selected>Select a fee to pay...</option>
                     <option value="establish_id">Establish ID</option>
-                    <option value="id_replacement">ID Replacement</option>
+                    <option value="id_renewal_replacement">ID Renewal/Replacement</option>
                     <option value="graduation_fee">Graduation Fee</option>
-                    <option value="transcript">Transcript of Records</option>
+                    <option value="masteral_fee">Masteral Fee</option>
                     <option value="other">Other Approved Fees</option>
                 </select>
             </div>
@@ -37,24 +37,16 @@ require_once 'php/includes/header.php';
             </div>
         </div>
 
-        <div class="form-section">
-            <h3><i class="ph ph-contactless-payment"></i> Payment Method</h3>
-            <div class="payment-methods">
-                <button type="button" class="payment-method selected" id="method-gcash" onclick="selectMethod('gcash')">
-                    <i class="ph ph-device-mobile"></i>
-                    <span>GCash</span>
-                </button>
-                <button type="button" class="payment-method" id="method-bank" onclick="selectMethod('bank')">
-                    <i class="ph ph-bank"></i>
-                    <span>Bank Transfer</span>
-                </button>
-                <button type="button" class="payment-method" id="method-otc" onclick="selectMethod('otc')">
-                    <i class="ph ph-storefront"></i>
-                    <span>Over-the-Counter</span>
-                </button>
+        <!-- Document Attachment Section (only shown for Graduation, Masteral, and Other Approved Fees) -->
+        <div class="form-section" id="attachmentSection" style="display: none;">
+            <h3><i class="ph ph-paperclip"></i> Support Attachment</h3>
+            <div class="form-group">
+                <label for="attachmentInput" class="form-label">Attach clearance / approval document image</label>
+                <input type="file" id="attachmentInput" class="form-control" accept="image/*">
+                <p class="text-muted" style="font-size: 0.8rem; margin-top: 0.25rem;">Please upload a screenshot or photo of your clearance or office approval before proceeding.</p>
             </div>
-            <input type="hidden" id="selectedMethod" value="gcash">
         </div>
+
     </div>
 
     <aside class="summary-box">
@@ -71,10 +63,13 @@ require_once 'php/includes/header.php';
 <div class="checkout-modal" id="checkoutModal">
     <div class="checkout-content">
         <h2>Confirm Payment</h2>
-        <p class="text-muted">You are about to process <strong id="modalTotalAmount"></strong> via <strong id="modalMethod">GCash</strong>.</p>
-        <div class="checkout-actions">
-            <button type="button" class="btn btn-primary" onclick="processSimulation()">
-                <i class="ph ph-check-circle"></i> Confirm and Pay Simulation
+        <p class="text-muted">You are about to process <strong id="modalTotalAmount"></strong> for school fees.</p>
+        <div class="checkout-actions" style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%;">
+            <button type="button" class="btn btn-payment" onclick="processSimulation('gcash')">
+                <i class="ph ph-device-mobile"></i> Pay with GCash Simulation
+            </button>
+            <button type="button" class="btn btn-payment" onclick="processSimulation('bank')" style="background-color: var(--tup-gray); color: white;">
+                <i class="ph ph-bank"></i> Pay with Bank Transfer Simulation
             </button>
             <button type="button" class="btn btn-outline" onclick="closeCheckoutModal()">Cancel</button>
         </div>
@@ -83,28 +78,68 @@ require_once 'php/includes/header.php';
 
 <script>
     let currentTotal = 0;
+    const feeTypeSelect = document.getElementById('feeType');
+    const amountInput = document.getElementById('amount');
+    const attachmentSection = document.getElementById('attachmentSection');
+    const attachmentInput = document.getElementById('attachmentInput');
+    const btnProceed = document.getElementById('btnProceed');
 
-    function selectMethod(method) {
-        document.querySelectorAll('.payment-method').forEach(el => el.classList.remove('selected'));
-        document.getElementById('method-' + method).classList.add('selected');
-        document.getElementById('selectedMethod').value = method;
-
-        let methodText = 'GCash';
-        if (method === 'bank') methodText = 'Bank Transfer';
-        if (method === 'otc') methodText = 'Over-the-Counter';
-        document.getElementById('modalMethod').innerText = methodText;
-    }
-
-    document.getElementById('amount').addEventListener('input', function(e) {
-        let amount = parseFloat(e.target.value) || 0;
+    function calculateTotal() {
+        let amount = parseFloat(amountInput.value) || 0;
         let total = amount > 0 ? amount + 15 : 0;
         currentTotal = total;
 
         document.getElementById('summarySubtotal').innerText = '\u20B1 ' + amount.toFixed(2);
         document.getElementById('summaryTotal').innerText = '\u20B1 ' + total.toFixed(2);
         document.getElementById('modalTotalAmount').innerText = '\u20B1 ' + total.toFixed(2);
+    }
 
-        document.getElementById('btnProceed').disabled = amount <= 0;
+    function validateForm() {
+        const amount = parseFloat(amountInput.value) || 0;
+        const val = feeTypeSelect.value;
+        let valid = amount > 0 && val !== "";
+
+        if (val === 'graduation_fee' || val === 'masteral_fee' || val === 'other') {
+            if (!attachmentInput.files || attachmentInput.files.length === 0) {
+                valid = false;
+            }
+        }
+
+        btnProceed.disabled = !valid;
+    }
+
+    feeTypeSelect.addEventListener('change', function() {
+        const val = this.value;
+        if (val === 'establish_id' || val === 'id_renewal_replacement') {
+            amountInput.value = 100;
+            amountInput.readOnly = true;
+        } else {
+            amountInput.readOnly = false;
+            if (amountInput.value == 100) {
+                amountInput.value = '';
+            }
+        }
+        
+        if (val === 'graduation_fee' || val === 'masteral_fee' || val === 'other') {
+            attachmentSection.style.display = 'block';
+            attachmentInput.required = true;
+        } else {
+            attachmentSection.style.display = 'none';
+            attachmentInput.required = false;
+            attachmentInput.value = ''; // clear file if switched back
+        }
+        
+        calculateTotal();
+        validateForm();
+    });
+
+    amountInput.addEventListener('input', function() {
+        calculateTotal();
+        validateForm();
+    });
+
+    attachmentInput.addEventListener('change', function() {
+        validateForm();
     });
 
     function showCheckoutModal() {
@@ -115,9 +150,8 @@ require_once 'php/includes/header.php';
         document.getElementById('checkoutModal').style.display = 'none';
     }
 
-    async function processSimulation() {
-        const feeType = document.getElementById('feeType').options[document.getElementById('feeType').selectedIndex].text;
-        const method = document.getElementById('selectedMethod').value;
+    async function processSimulation(method) {
+        const feeType = feeTypeSelect.options[feeTypeSelect.selectedIndex].text;
 
         try {
             const response = await fetch('php/api.php?action=create_transaction', {

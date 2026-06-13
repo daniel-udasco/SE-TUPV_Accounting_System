@@ -48,6 +48,7 @@ if ($isEligible) {
                 </thead>
                 <tbody>
                     <?php foreach($subjects as $subj):
+                        $enrolled = $subj['total_slots'] - $subj['available_slots'];
                         $isFull = $subj['available_slots'] <= 0;
                     ?>
                     <tr class="<?php echo $isFull ? 'text-muted' : ''; ?>">
@@ -59,15 +60,26 @@ if ($isEligible) {
                         <td>&#8369; <?php echo number_format($subj['fee'], 2); ?></td>
                         <td>
                             <?php if($isFull): ?>
-                                <span class="slots-badge full">Full</span>
+                                <span class="slots-badge full" style="margin-right: 0.5rem;">Full</span>
+                                <span style="font-size: 0.85rem; font-weight: 600; color: var(--ink-500);"><?php echo $enrolled; ?>/<?php echo $subj['total_slots']; ?></span>
                             <?php else: ?>
-                                <span class="slots-badge available"><?php echo $subj['available_slots']; ?> / <?php echo $subj['total_slots']; ?> open</span>
+                                <span style="font-size: 0.85rem; font-weight: 600; color: var(--green-700);"><?php echo $enrolled; ?>/<?php echo $subj['total_slots']; ?></span>
                             <?php endif; ?>
                         </td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
+            
+            <!-- Attachment Section -->
+            <div class="panel" style="margin-top: 1.5rem; padding: 1.15rem;">
+                <h3 style="font-size: 0.98rem; display: flex; align-items: center; gap: 0.45rem;"><i class="ph ph-paperclip"></i> Support Attachment</h3>
+                <div class="form-group" style="margin-top: 0.75rem;">
+                    <label for="summerAttachmentInput" class="form-label">Attach proof of failed grade (screenshot/picture)</label>
+                    <input type="file" id="summerAttachmentInput" class="form-control" accept="image/*">
+                    <p class="text-muted" style="font-size: 0.8rem; margin-top: 0.25rem;">Please upload a screenshot or photo of your failed grade as proof of eligibility before proceeding to payment.</p>
+                </div>
+            </div>
         </div>
 
         <aside class="summary-box">
@@ -83,10 +95,13 @@ if ($isEligible) {
     <div class="checkout-modal" id="checkoutModal">
         <div class="checkout-content">
             <h2>Confirm Enrollment Payment</h2>
-            <p class="text-muted">You are about to process <strong id="modalTotalAmount"></strong> for summer classes via GCash.</p>
-            <div class="checkout-actions">
-                <button type="button" class="btn btn-payment" onclick="processSimulation()">
+            <p class="text-muted">You are about to process <strong id="modalTotalAmount"></strong> for summer classes.</p>
+            <div class="checkout-actions" style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%;">
+                <button type="button" class="btn btn-payment" onclick="processSimulation('gcash')">
                     <i class="ph ph-device-mobile"></i> Pay with GCash Simulation
+                </button>
+                <button type="button" class="btn btn-payment" onclick="processSimulation('bank')" style="background-color: var(--tup-gray); color: white;">
+                    <i class="ph ph-bank"></i> Pay with Bank Transfer Simulation
                 </button>
                 <button type="button" class="btn btn-outline" onclick="closeCheckoutModal()">Cancel</button>
             </div>
@@ -95,6 +110,8 @@ if ($isEligible) {
 
     <script>
         let currentTotal = 0;
+        const btnEnroll = document.getElementById('btnEnroll');
+        const attachmentInput = document.getElementById('summerAttachmentInput');
 
         function calculateTotal() {
             let total = 0;
@@ -112,8 +129,19 @@ if ($isEligible) {
             document.getElementById('subjectCount').innerText = selected;
             document.getElementById('totalAssessment').innerText = '\u20B1 ' + total.toFixed(2);
             document.getElementById('modalTotalAmount').innerText = '\u20B1 ' + total.toFixed(2);
-            document.getElementById('btnEnroll').disabled = total === 0;
+            
+            validateForm();
         }
+
+        function validateForm() {
+            let valid = currentTotal > 0;
+            if (!attachmentInput.files || attachmentInput.files.length === 0) {
+                valid = false;
+            }
+            btnEnroll.disabled = !valid;
+        }
+
+        attachmentInput.addEventListener('change', validateForm);
 
         function showCheckoutModal() {
             document.getElementById('checkoutModal').style.display = 'flex';
@@ -123,7 +151,9 @@ if ($isEligible) {
             document.getElementById('checkoutModal').style.display = 'none';
         }
 
-        async function processSimulation() {
+        async function processSimulation(method) {
+            const selectedSubjectIds = Array.from(document.querySelectorAll('.subject-cb:checked')).map(cb => cb.getAttribute('data-id'));
+
             try {
                 const response = await fetch('php/api.php?action=create_transaction', {
                     method: 'POST',
@@ -133,7 +163,8 @@ if ($isEligible) {
                         description: 'Summer Class Enrollment',
                         type: 'summer_class',
                         amount: currentTotal,
-                        method: 'gcash'
+                        method: method,
+                        subject_ids: selectedSubjectIds
                     })
                 });
                 const result = await response.json();

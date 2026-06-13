@@ -10,6 +10,16 @@ $userFirstName = $_SESSION['user']['first_name'] ?? 'Guest';
 $userLastName = $_SESSION['user']['last_name'] ?? '';
 $userCourse = $_SESSION['user']['course'] ?? '';
 $userYear = $_SESSION['user']['year_level'] ?? '';
+$userYearFormatted = '';
+if ($userYear !== '') {
+    switch ((int)$userYear) {
+        case 1: $userYearFormatted = '1st Year'; break;
+        case 2: $userYearFormatted = '2nd Year'; break;
+        case 3: $userYearFormatted = '3rd Year'; break;
+        case 4: $userYearFormatted = '4th Year'; break;
+        default: $userYearFormatted = "Master's Year"; break;
+    }
+}
 $initials = substr($userFirstName, 0, 1) . substr($userLastName, 0, 1);
 if (empty($initials)) $initials = 'G';
 $basePath = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '')), '/');
@@ -43,12 +53,18 @@ $styleVersion = filemtime(__DIR__ . '/../../css/style.css');
             </div>
             
             <?php if($isLoggedIn): ?>
-            <div class="user-profile">
-                <div class="user-copy" style="text-align: right;">
-                    <div style="font-weight: 750; font-size: 0.9rem;"><?php echo htmlspecialchars($userFirstName . ' ' . $userLastName); ?></div>
-                    <div style="color: var(--text-muted); font-size: 0.75rem;"><?php echo htmlspecialchars($userCourse . ' - Year ' . $userYear); ?></div>
+            <div class="profile-dropdown-wrapper">
+                <div class="user-profile" id="profileToggle" style="cursor: pointer;">
+                    <div class="user-copy" style="text-align: right;">
+                        <div style="font-weight: 750; font-size: 0.9rem;"><?php echo htmlspecialchars($userFirstName . ' ' . $userLastName); ?></div>
+                        <div style="color: var(--text-muted); font-size: 0.75rem;"><?php echo htmlspecialchars($userCourse . ' - ' . $userYearFormatted); ?></div>
+                    </div>
+                    <div class="avatar"><?php echo htmlspecialchars($initials); ?></div>
                 </div>
-                <div class="avatar"><?php echo htmlspecialchars($initials); ?></div>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <a href="profile.php"><i class="ph ph-user"></i> Profile</a>
+                    <a href="logout.php"><i class="ph ph-sign-out"></i> Logout</a>
+                </div>
             </div>
             <?php else: ?>
             <div class="user-profile">

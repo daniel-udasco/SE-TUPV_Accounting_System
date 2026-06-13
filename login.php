@@ -70,9 +70,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <span class="eyebrow"><i class="ph ph-shield-check"></i> Student accounting portal</span>
             <h1>Payments, receipts, and campus materials in one workspace.</h1>
             <p>Access your student dashboard to settle approved fees, apply for summer class payments, reserve official merchandise, and review your transaction history.</p>
-            <div class="login-photo-placeholder image-placeholder">
-                <span class="placeholder-badge"><i class="ph ph-image"></i> University and Accounting Office photo placeholder</span>
-            </div>
         </section>
 
         <section class="login-card">
@@ -106,14 +103,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <button type="submit" class="btn btn-primary" style="width: 100%;">Sign In</button>
             </form>
-            <div class="text-center mt-3" style="font-size: 0.85rem;">
-                Having trouble logging in? <a href="info.php#contact">Contact Support</a>
-            </div>
         </section>
     </main>
 
-    <footer class="login-footer">
-        &copy; 2026 Technological University of the Philippines Visayas. All rights reserved.
+    <footer class="login-footer" style="padding: 1.25rem 5vw; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(8px); margin-top: auto;">
+        <div style="max-width: 1180px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%; flex-wrap: wrap;">
+            <p style="margin: 0; font-size: 0.82rem; color: var(--text-muted);">&copy; 2026 Technological University of the Philippines Visayas. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/tupvbusinessoffice" target="_blank" title="Facebook"><i class="ph ph-facebook-logo"></i></a>
+                <a href="https://www.messenger.com/tupvbusinessoffice/" target="_blank" title="Messenger"><i class="ph ph-messenger-logo"></i></a>
+                <a href="mailto:accountingtupv@gmail.com" title="Email"><i class="ph ph-envelope-simple"></i></a>
+                <a href="tel:0344452177" title="Phone: (034) 445 2177"><i class="ph ph-phone"></i></a>
+            </div>
+        </div>
     </footer>
 </body>
 </html>

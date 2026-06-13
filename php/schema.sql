@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS users (
     course VARCHAR(50),
     year_level INT,
     is_eligible_summer_class BOOLEAN DEFAULT TRUE,
+    is_ched_scholar BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -74,9 +75,9 @@ CREATE TABLE IF NOT EXISTS feedbacks (
 
 -- Insert Mock Data
 -- Password hashes generated for the passwords "Udasco" and "Password"
-INSERT IGNORE INTO users (student_id, password_hash, first_name, last_name, course, year_level, is_eligible_summer_class) VALUES
-('TUPV-23-0050', '$2y$10$tZ3U60yO8Y.JqF6T/y9q1eW04B1sUqWj5R/9A/6kM/4L1v9J1aM2W', 'Daniel', 'Udasco', 'BSCpE', 3, TRUE), -- password: Udasco
-('TUPV-23-0051', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'John', 'Doe', 'BSIT', 2, FALSE); -- password: password
+INSERT IGNORE INTO users (student_id, password_hash, first_name, last_name, course, year_level, is_eligible_summer_class, is_ched_scholar) VALUES
+('TUPV-23-0050', '$2y$10$tZ3U60yO8Y.JqF6T/y9q1eW04B1sUqWj5R/9A/6kM/4L1v9J1aM2W', 'Daniel', 'Udasco', 'BSCpE', 3, TRUE, TRUE), -- password: Udasco
+('TUPV-23-0051', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'John', 'Doe', 'BSIT', 2, FALSE, FALSE); -- password: password
 
 INSERT IGNORE INTO products (name, price, stock_quantity) VALUES
 ('PE Uniform (Set)', 300.00, 100),
