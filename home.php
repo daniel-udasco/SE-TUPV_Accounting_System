@@ -36,7 +36,7 @@ try {
         </div>
     </div>
     <div class="hero-visual">
-        <span class="placeholder-badge"><i class="ph ph-image"></i> Accounting office photo placeholder</span>
+        <img src="assets/home-accounting_office_photo.jpg" alt="Accounting Office" style="width: 100%; height: 100%; object-fit: cover; display: block;">
     </div>
 </section>
 
@@ -69,7 +69,9 @@ try {
 
 <section class="action-grid">
     <article class="action-card">
-        <div class="image-placeholder"><span class="placeholder-badge">School fees image</span></div>
+        <div class="image-placeholder">
+            <img src="assets/home-school-fees-image.jpg" alt="School Fees" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        </div>
         <div class="action-content">
             <h3><i class="ph ph-graduation-cap"></i> School Fees</h3>
             <p>Settle ID, transcript, graduation, and other approved fees through a guided payment form.</p>
@@ -77,7 +79,9 @@ try {
         </div>
     </article>
     <article class="action-card">
-        <div class="image-placeholder"><span class="placeholder-badge">Summer class image</span></div>
+        <div class="image-placeholder">
+            <img src="assets/home-summer-class-image.jpg" alt="Summer Class" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        </div>
         <div class="action-content">
             <h3><i class="ph ph-sun-horizon"></i> Summer Class</h3>
             <p>Check eligibility, select available subjects, and generate your summer class assessment.</p>
@@ -85,7 +89,9 @@ try {
         </div>
     </article>
     <article class="action-card">
-        <div class="image-placeholder"><span class="placeholder-badge">Merchandise image</span></div>
+        <div class="image-placeholder">
+            <img src="assets/home-merchandise-image.png" alt="Merchandise" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        </div>
         <div class="action-content">
             <h3><i class="ph ph-t-shirt"></i> Materials Shop</h3>
             <p>Reserve uniforms, lanyards, and university materials for pickup at the Accounting Office.</p>

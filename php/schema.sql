@@ -76,8 +76,17 @@ CREATE TABLE IF NOT EXISTS feedbacks (
 -- Insert Mock Data
 -- Password hashes generated for the passwords "Udasco" and "Password"
 INSERT IGNORE INTO users (student_id, password_hash, first_name, last_name, course, year_level, is_eligible_summer_class, is_ched_scholar) VALUES
-('TUPV-23-0050', '$2y$10$tZ3U60yO8Y.JqF6T/y9q1eW04B1sUqWj5R/9A/6kM/4L1v9J1aM2W', 'Daniel', 'Udasco', 'BSCpE', 3, TRUE, TRUE), -- password: Udasco
-('TUPV-23-0051', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'John', 'Doe', 'BSIT', 2, FALSE, FALSE); -- password: password
+('TUPV-23-0050', '$2y$10$qOZ2ecNqusd9xpA9aAcL9uRf1JONHEf2mBGmo14btwmsrMMUN41be', 'Daniel', 'Udasco', 'BET T09-A', NULL, TRUE, TRUE),
+('TUPV-23-0051', '$2y$10$GgezO5HrjvOWcxgr5BN3CenNCuMyu9X7ZTmmsbPmfpflmNbfmg/Da', 'John', 'Doe', 'BSIT', 2, FALSE, FALSE),
+('TUPV-23-0052', '$2y$10$Z0/bXQrgZnHqGyY3o6KvFOQyviCfUInxai0s8h82TipTapCYAESqq', 'Rex Orly', 'Mallorca', 'BET T09-A', NULL, TRUE, FALSE),
+('TUPV-23-0053', '$2y$10$bZERtD.U8atHZuVSSF.zOeuyI3vJSJ0Obb2kCz7/997m8iz1PCW92', 'Hazel Mae', 'Jalandoni', 'BET T09-A', NULL, TRUE, FALSE),
+('TUPV-23-0054', '$2y$10$8xkZvBhBykhIme4Ba/Jv7ewe9BaFzwh38EsMP4/kBXO3MFnuE0eFq', 'Rica', 'Galagate', 'BET T09-A', NULL, TRUE, TRUE),
+('TUPV-23-0055', '$2y$10$MHTFN3ux4RnPt91rVBCC9O3sh7OZD.6XW2Ra3W0/PJ/c9qiuFokuW', 'Sidney', 'Monillo', 'BET T09-A', NULL, TRUE, FALSE),
+('TUPV-23-0056', '$2y$10$BRGMxu8ankh947KmjBW.P.HIuIGjJd.JwAbBo0AY2zawezQuwkoRu', 'Francis Roi', 'Buenacosa', 'BET T09-A', NULL, TRUE, TRUE),
+('TUPV-23-0057', '$2y$10$qRtp0d71QpZe0RgckUyHAuTmr1Ks0Cy7m//IVSMm05lR06e3YWrT2', 'Harold', 'Perez', 'BET T09-A', NULL, FALSE, FALSE),
+('TUPV-23-0058', '$2y$10$ZJxHVMr6wDJzsSa3pXzQU.fwKx6hE1hi6cwqQ/SbWxggXltjJXX7u', 'Desiree', 'Valois', 'BET T09-A', NULL, TRUE, FALSE),
+('TUPV-23-0059', '$2y$10$XQ91dI9Et3I8wjQBFA0AbOEHjrVzVONTVtiz6xSMsK/bHzSb.yJv.', 'Tovi', 'Macalipsay', 'BET T09-A', NULL, FALSE, FALSE),
+('TUPV-23-0060', '$2y$10$yXQxsYpgnjo0ebOa5q5/gOd7VOL6LjrjVDu5QZaSgS4J8PrfaqXX6', 'Jared', 'Antiporda', 'BET T05-B', NULL, FALSE, FALSE); -- password: password
 
 INSERT IGNORE INTO products (name, price, stock_quantity) VALUES
 ('PE Uniform (Set)', 600.00, 100),

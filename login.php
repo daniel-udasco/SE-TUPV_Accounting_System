@@ -56,7 +56,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body class="login-page">
     <nav class="login-nav">
         <a class="navbar-brand" href="info.php">
-            <span class="brand-mark">LOGO</span>
+            <span class="brand-mark" style="padding: 2px;">
+                <img src="assets/TUPVAS_logo.svg" alt="TUPVAS Logo" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+            </span>
             <span>TUPV Accounting Office</span>
         </a>
         <div class="navbar-links">

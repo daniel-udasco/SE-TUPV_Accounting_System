@@ -6,7 +6,9 @@ if (!in_array($currentPage, $hideSidebarPages)):
 ?>
 <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
-        <div class="sidebar-logo-placeholder">LOGO</div>
+        <div class="sidebar-logo-placeholder" style="padding: 2px;">
+            <img src="assets/TUPVAS_logo.svg" alt="TUPVAS Logo" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+        </div>
         <div class="brand-name">TUPV<span class="brand-subtitle">Accounting Office</span></div>
     </div>
     <ul class="sidebar-menu">

@@ -9,13 +9,15 @@ $stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
 $stmt->execute([$userId]);
 $user = $stmt->fetch();
 // Format Year Level descriptive string
-$yearFormatted = '';
-switch ((int)$user['year_level']) {
-    case 1: $yearFormatted = '1st Year'; break;
-    case 2: $yearFormatted = '2nd Year'; break;
-    case 3: $yearFormatted = '3rd Year'; break;
-    case 4: $yearFormatted = '4th Year'; break;
-    default: $yearFormatted = "Master's Year"; break;
+$yearFormatted = 'Not Applicable';
+if ($user['year_level'] !== null && (int)$user['year_level'] > 0) {
+    switch ((int)$user['year_level']) {
+        case 1: $yearFormatted = '1st Year'; break;
+        case 2: $yearFormatted = '2nd Year'; break;
+        case 3: $yearFormatted = '3rd Year'; break;
+        case 4: $yearFormatted = '4th Year'; break;
+        default: $yearFormatted = "Master's Year"; break;
+    }
 }
 ?>
 

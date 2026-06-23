@@ -15,7 +15,7 @@ require_once 'php/includes/header.php';
         </div>
     </div>
     <div class="hero-visual">
-        <span class="placeholder-badge"><i class="ph ph-image"></i> Office exterior photo placeholder</span>
+        <img src="assets/info-office-exterior.jpg" alt="Office Exterior" style="width: 100%; height: 100%; object-fit: cover; display: block;">
     </div>
 </section>
 
@@ -39,7 +39,7 @@ require_once 'php/includes/header.php';
 
 <section class="info-feature">
     <div class="image-placeholder">
-        <span class="placeholder-badge">Accounting office interior placeholder</span>
+        <img src="assets/info-office-interior.jpg" alt="Accounting Office Interior" style="width: 100%; height: 100%; object-fit: cover; display: block;">
     </div>
     <div class="section-content">
         <span class="eyebrow"><i class="ph ph-buildings"></i> Visit</span>
@@ -65,7 +65,7 @@ require_once 'php/includes/header.php';
         </div>
     </div>
     <div class="image-placeholder">
-        <span class="placeholder-badge">Support team photo placeholder</span>
+        <img src="assets/info-office-closeup.jpg" alt="Office Support Team" style="width: 100%; height: 100%; object-fit: cover; display: block;">
     </div>
 </section>
 
@@ -80,8 +80,10 @@ require_once 'php/includes/header.php';
         <!-- Level 1: Campus Director -->
         <div class="tree-node">
             <div class="profile-card">
-                <div class="profile-img"><i class="ph ph-user"></i></div>
-                <div class="profile-name">Eric A. Malinao, Ph.D.</div>
+                <div class="profile-img">
+                    <img src="assets/staff1.jpg" alt="Eric A. Malo-oy, Ph.D.">
+                </div>
+                <div class="profile-name">Eric A. Malo-oy, Ph.D.</div>
                 <div class="profile-title">Campus Director</div>
             </div>
         </div>
@@ -91,8 +93,10 @@ require_once 'php/includes/header.php';
         <!-- Level 2: Chief Administrative Officer -->
         <div class="tree-node">
             <div class="profile-card">
-                <div class="profile-img"><i class="ph ph-user"></i></div>
-                <div class="profile-name">Atty. Sarah J. Concepcion</div>
+                <div class="profile-img">
+                    <img src="assets/staff2.jpg" alt="Lainie Mae L. Bala-an, DPA">
+                </div>
+                <div class="profile-name">Lainie Mae L. Bala-an, DPA</div>
                 <div class="profile-title">Chief Administrative Officer</div>
             </div>
         </div>
@@ -102,9 +106,11 @@ require_once 'php/includes/header.php';
         <!-- Level 3: Accounting Head -->
         <div class="tree-node">
             <div class="profile-card">
-                <div class="profile-img"><i class="ph ph-user"></i></div>
-                <div class="profile-name">Mrs. Jane Doe, CPA</div>
-                <div class="profile-title">Accounting Head</div>
+                <div class="profile-img">
+                    <img src="assets/staff3.jpg" alt="Celeste Grace B. Delumpa, CPA">
+                </div>
+                <div class="profile-name">Celeste Grace B. Delumpa, CPA</div>
+                <div class="profile-title">Accountant III / Head, Accounting Office</div>
             </div>
         </div>
         
@@ -112,22 +118,28 @@ require_once 'php/includes/header.php';
             <!-- Level 4: Line spread to three staffs -->
             <div class="tree-node child">
                 <div class="profile-card">
-                    <div class="profile-img"><i class="ph ph-user"></i></div>
-                    <div class="profile-name">Mr. John Smith</div>
+                    <div class="profile-img">
+                        <img src="assets/staff4.jpg" alt="Jazer John A. Frias, CPA">
+                    </div>
+                    <div class="profile-name">Jazer John A. Frias, CPA</div>
                     <div class="profile-title">Accountant II</div>
                 </div>
             </div>
             <div class="tree-node child">
                 <div class="profile-card">
-                    <div class="profile-img"><i class="ph ph-user"></i></div>
-                    <div class="profile-name">Ms. Maria Santos</div>
+                    <div class="profile-img">
+                        <img src="assets/staff4-a.jpg" alt="Jorjet D. Abad">
+                    </div>
+                    <div class="profile-name">Jorjet D. Abad</div>
                     <div class="profile-title">Administrative Aide VI</div>
                 </div>
             </div>
             <div class="tree-node child">
                 <div class="profile-card">
-                    <div class="profile-img"><i class="ph ph-user"></i></div>
-                    <div class="profile-name">Mr. James Dela Cruz</div>
+                    <div class="profile-img">
+                        <img src="assets/staff4-b.jpg" alt="Romena G. Esidenio">
+                    </div>
+                    <div class="profile-name">Romena G. Esidenio</div>
                     <div class="profile-title">Administrative Aide III</div>
                 </div>
             </div>

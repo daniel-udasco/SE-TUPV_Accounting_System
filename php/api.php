@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $amount = $input['amount'] ?? 0;
         $method = $input['method'] ?? 'gcash';
         $subjectIds = $input['subject_ids'] ?? [];
+        $products = $input['products'] ?? [];
         
         $refNo = 'TRX-' . rand(100000, 999999);
         
@@ -35,6 +36,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 foreach ($subjectIds as $subjId) {
                     $updateSubj->execute([$subjId]);
                     $insertEnroll->execute([$userId, $subjId, $txnId]);
+                }
+            }
+            
+            // If materials shop purchase, decrement stock quantity
+            if ($type === 'materials' && !empty($products)) {
+                $updateStock = $pdo->prepare("UPDATE products SET stock_quantity = GREATEST(0, stock_quantity - ?) WHERE id = ?");
+                foreach ($products as $prod) {
+                    $prodId = $prod['product_id'];
+                    $qty = $prod['quantity'];
+                    $updateStock->execute([$qty, $prodId]);
                 }
             }
             

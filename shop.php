@@ -22,11 +22,26 @@ try {
 </div>
 
 <form id="shopForm">
+    <?php
+    $product_images = [
+        'PE Uniform (Set)' => 'assets/shop-pe-uniform-set-image.jpg',
+        'College Uniform Textile' => 'assets/shop-college-uniform-textile-image.jpg',
+        'University Lanyard' => 'assets/shop-university-lanyard-image.jpg',
+        'SIT Uniform' => 'assets/shop-sit-uniform-image.jpg'
+    ];
+    ?>
     <div class="merch-grid">
         <?php foreach($products as $product): ?>
         <article class="merch-card" data-price="<?php echo $product['price']; ?>" data-id="<?php echo $product['id']; ?>">
             <div class="product-placeholder">
-                <span class="placeholder-badge"><?php echo htmlspecialchars($product['name']); ?> image</span>
+                <?php 
+                $imgSrc = $product_images[$product['name']] ?? '';
+                if ($imgSrc): 
+                ?>
+                    <img src="<?php echo $imgSrc; ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                <?php else: ?>
+                    <span class="placeholder-badge"><?php echo htmlspecialchars($product['name']); ?> image</span>
+                <?php endif; ?>
             </div>
             <div class="merch-details">
                 <div class="merch-title" style="font-weight: 700;"><?php echo htmlspecialchars($product['name']); ?></div>
@@ -117,6 +132,7 @@ try {
 
     async function processSimulation(method) {
         let items = [];
+        let purchaseData = [];
         document.querySelectorAll('.merch-card').forEach(card => {
             const qty = parseInt(card.querySelector('.qty-input').value);
             if (qty > 0) {
@@ -124,6 +140,12 @@ try {
                 const sizeSelect = card.querySelector('.size-select');
                 const size = sizeSelect ? ' (' + sizeSelect.value + ')' : '';
                 items.push(name + size + ' x' + qty);
+
+                const productId = parseInt(card.getAttribute('data-id'));
+                purchaseData.push({
+                    product_id: productId,
+                    quantity: qty
+                });
             }
         });
         const desc = 'Materials Shop Purchase: ' + items.join(', ');
@@ -137,7 +159,8 @@ try {
                     description: desc,
                     type: 'materials',
                     amount: currentTotal,
-                    method: method
+                    method: method,
+                    products: purchaseData
                 })
             });
             const result = await response.json();

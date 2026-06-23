@@ -11,7 +11,7 @@ $userLastName = $_SESSION['user']['last_name'] ?? '';
 $userCourse = $_SESSION['user']['course'] ?? '';
 $userYear = $_SESSION['user']['year_level'] ?? '';
 $userYearFormatted = '';
-if ($userYear !== '') {
+if ($userYear !== '' && $userYear !== null && (int)$userYear > 0) {
     switch ((int)$userYear) {
         case 1: $userYearFormatted = '1st Year'; break;
         case 2: $userYearFormatted = '2nd Year'; break;
@@ -57,7 +57,14 @@ $styleVersion = filemtime(__DIR__ . '/../../css/style.css');
                 <div class="user-profile" id="profileToggle" style="cursor: pointer;">
                     <div class="user-copy" style="text-align: right;">
                         <div style="font-weight: 750; font-size: 0.9rem;"><?php echo htmlspecialchars($userFirstName . ' ' . $userLastName); ?></div>
-                        <div style="color: var(--text-muted); font-size: 0.75rem;"><?php echo htmlspecialchars($userCourse . ' - ' . $userYearFormatted); ?></div>
+                        <div style="color: var(--text-muted); font-size: 0.75rem;">
+                            <?php 
+                            echo htmlspecialchars($userCourse); 
+                            if ($userYearFormatted !== '') {
+                                echo ' - ' . htmlspecialchars($userYearFormatted);
+                            }
+                            ?>
+                        </div>
                     </div>
                     <div class="avatar"><?php echo htmlspecialchars($initials); ?></div>
                 </div>

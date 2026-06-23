@@ -24,11 +24,40 @@ require_once 'php/includes/header.php';
         <!-- Sliding Gallery -->
         <div>
             <span class="eyebrow"><i class="ph ph-images"></i> Campus & Office Gallery</span>
+            <style>
+                .slider-wrapper {
+                    width: 1000% !important;
+                    animation: slideShowTen 40s infinite !important;
+                }
+                .slide {
+                    width: 10% !important;
+                }
+                @keyframes slideShowTen {
+                    0%, 8% { transform: translateX(0); }
+                    10%, 18% { transform: translateX(-10%); }
+                    20%, 28% { transform: translateX(-20%); }
+                    30%, 38% { transform: translateX(-30%); }
+                    40%, 48% { transform: translateX(-40%); }
+                    50%, 58% { transform: translateX(-50%); }
+                    60%, 68% { transform: translateX(-60%); }
+                    70%, 78% { transform: translateX(-70%); }
+                    80%, 88% { transform: translateX(-80%); }
+                    90%, 98% { transform: translateX(-90%); }
+                    100% { transform: translateX(0); }
+                }
+            </style>
             <div class="slider-container" style="margin-top: 0.5rem;">
                 <div class="slider-wrapper">
-                    <div class="slide"><img src="assets/visit_gallery1.png" alt="TUPV Walkway"></div>
-                    <div class="slide"><img src="assets/visit_gallery2.png" alt="Accounting Services Counter"></div>
-                    <div class="slide"><img src="assets/visit_gallery3.png" alt="Campus Lounge"></div>
+                    <div class="slide"><img src="assets/visit1.jpg" alt="Campus Entrance & Guardhouse"></div>
+                    <div class="slide"><img src="assets/visit2.jpg" alt="TUPV Walkway & Gardens"></div>
+                    <div class="slide"><img src="assets/visit3.jpg" alt="Admin Building Lobby"></div>
+                    <div class="slide"><img src="assets/visit4.jpg" alt="Accounting Office Exterior"></div>
+                    <div class="slide"><img src="assets/visit5.jpg" alt="Accounting Counter Detail"></div>
+                    <div class="slide"><img src="assets/visit6.jpg" alt="Campus Courtyard & Benches"></div>
+                    <div class="slide"><img src="assets/visit7.jpg" alt="Student Lounge & Discussion Area"></div>
+                    <div class="slide"><img src="assets/visit8.jpg" alt="Library Entrance & Study Hall"></div>
+                    <div class="slide"><img src="assets/visit9.jpg" alt="Main Academic Building Corridor"></div>
+                    <div class="slide"><img src="assets/visit9a.jpg" alt="Campus Sports Field & Activity Center"></div>
                 </div>
             </div>
         </div>

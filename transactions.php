@@ -125,7 +125,9 @@ try {
 <div class="checkout-modal" id="receiptModal" style="display: none;">
     <div class="checkout-content" style="max-width: 450px; text-align: left; padding: 2rem;">
         <div style="text-align: center; border-bottom: 2px dashed var(--line-strong); padding-bottom: 1.5rem; margin-bottom: 1.5rem; position: relative;">
-            <div class="sidebar-logo-placeholder" style="margin: 0 auto 0.75rem; width: 48px; height: 48px; font-size: 0.75rem;">LOGO</div>
+            <div class="sidebar-logo-placeholder" style="margin: 0 auto 0.75rem; width: 56px; height: 56px; font-size: 0.75rem; padding: 2px;">
+                <img src="assets/TUPVAS_logo.svg" alt="TUPVAS Logo" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+            </div>
             <h3 style="margin-bottom: 0.25rem;">TUP Visayas</h3>
             <p class="text-muted" style="font-size: 0.82rem; margin: 0;">Accounting Office Official Receipt</p>
         </div>
