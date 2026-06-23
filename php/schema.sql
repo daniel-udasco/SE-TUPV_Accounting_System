@@ -80,9 +80,10 @@ INSERT IGNORE INTO users (student_id, password_hash, first_name, last_name, cour
 ('TUPV-23-0051', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'John', 'Doe', 'BSIT', 2, FALSE, FALSE); -- password: password
 
 INSERT IGNORE INTO products (name, price, stock_quantity) VALUES
-('PE Uniform (Set)', 300.00, 100),
+('PE Uniform (Set)', 600.00, 100),
 ('College Uniform Textile', 180.00, 150),
-('University Lanyard', 100.00, 200);
+('University Lanyard', 100.00, 200),
+('SIT Uniform', 380.00, 120);
 
 INSERT IGNORE INTO summer_subjects (subject_code, subject_title, fee, total_slots, available_slots) VALUES
 ('MATH 101', 'Calculus 1', 1500.00, 30, 15),

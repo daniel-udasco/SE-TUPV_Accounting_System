@@ -29,11 +29,25 @@ try {
                 <span class="placeholder-badge"><?php echo htmlspecialchars($product['name']); ?> image</span>
             </div>
             <div class="merch-details">
-                <div class="merch-title"><?php echo htmlspecialchars($product['name']); ?></div>
+                <div class="merch-title" style="font-weight: 700;"><?php echo htmlspecialchars($product['name']); ?></div>
                 <p class="text-muted" style="font-size: 0.86rem; margin-top: 0.25rem;">Stock available: <?php echo number_format((int)$product['stock_quantity']); ?></p>
-                <div class="merch-price">&#8369; <?php echo number_format($product['price'], 2); ?></div>
+                
+                <?php if ($product['name'] === 'PE Uniform (Set)' || $product['name'] === 'SIT Uniform'): ?>
+                <div class="size-selector" style="margin-top: 0.5rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.84rem;">
+                    <span class="text-muted" style="font-weight: 600;">Size:</span>
+                    <select class="size-select" style="font-size: 0.8rem; padding: 0.2rem 0.4rem; border-radius: var(--radius-sm); border: 1px solid var(--line-strong); background: var(--bg-card); color: var(--text-main); font-weight: 600;">
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M" selected>M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                </div>
+                <?php endif; ?>
 
-                <div class="qty-control">
+                <div class="merch-price" style="margin-top: 0.5rem; color: var(--tup-maroon); font-weight: 800; font-size: 1.05rem;">&#8369; <?php echo number_format($product['price'], 2); ?></div>
+
+                <div class="qty-control" style="margin-top: 0.6rem;">
                     <button type="button" class="qty-btn" onclick="updateQty(this, -1)" title="Decrease quantity"><i class="ph ph-minus"></i></button>
                     <input type="number" class="qty-input" value="0" min="0" readonly aria-label="Quantity">
                     <button type="button" class="qty-btn" onclick="updateQty(this, 1)" title="Increase quantity"><i class="ph ph-plus"></i></button>
@@ -102,13 +116,25 @@ try {
     }
 
     async function processSimulation(method) {
+        let items = [];
+        document.querySelectorAll('.merch-card').forEach(card => {
+            const qty = parseInt(card.querySelector('.qty-input').value);
+            if (qty > 0) {
+                const name = card.querySelector('.merch-title').innerText;
+                const sizeSelect = card.querySelector('.size-select');
+                const size = sizeSelect ? ' (' + sizeSelect.value + ')' : '';
+                items.push(name + size + ' x' + qty);
+            }
+        });
+        const desc = 'Materials Shop Purchase: ' + items.join(', ');
+
         try {
             const response = await fetch('php/api.php?action=create_transaction', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     user_id: <?php echo $_SESSION['user']['id']; ?>,
-                    description: 'Materials Shop Purchase',
+                    description: desc,
                     type: 'materials',
                     amount: currentTotal,
                     method: method
