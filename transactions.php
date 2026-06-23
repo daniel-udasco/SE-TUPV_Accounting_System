@@ -86,13 +86,13 @@ try {
         <table>
             <thead>
                 <tr>
-                    <th>Ref No.</th>
+                    <th style="width: 140px; white-space: nowrap;">Ref No.</th>
                     <th>Description</th>
-                    <th>Date</th>
-                    <th>Method</th>
-                    <th>Amount</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                    <th style="width: 160px; white-space: nowrap;">Date</th>
+                    <th style="width: 120px; white-space: nowrap;">Method</th>
+                    <th style="width: 130px; white-space: nowrap;">Amount</th>
+                    <th style="width: 90px; white-space: nowrap;">Status</th>
+                    <th style="width: 80px; white-space: nowrap;">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -104,9 +104,9 @@ try {
                 <tr>
                     <td class="mono" style="font-weight: 700;"><?php echo htmlspecialchars($txn['reference_no']); ?></td>
                     <td><?php echo htmlspecialchars($txn['description']); ?></td>
-                    <td><?php echo date('M d, Y g:i A', strtotime($txn['transaction_date'])); ?></td>
+                    <td style="white-space: nowrap;"><?php echo date('M d, Y g:i A', strtotime($txn['transaction_date'])); ?></td>
                     <td><?php echo $methodText; ?></td>
-                    <td style="font-weight: 800; color: var(--tup-maroon);">&#8369; <?php echo number_format($txn['amount'], 2); ?></td>
+                    <td style="font-weight: 800; color: var(--tup-maroon); white-space: nowrap;">&#8369; <?php echo number_format($txn['amount'], 2); ?></td>
                     <td><span class="status <?php echo strtolower($txn['status']); ?>"><?php echo ucfirst($txn['status']); ?></span></td>
                     <td>
                         <button type="button" class="btn btn-outline" style="min-height: 32px; padding: 0.4rem 0.65rem; font-size: 0.78rem;"

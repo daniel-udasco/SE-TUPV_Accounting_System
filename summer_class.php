@@ -40,25 +40,35 @@ if ($isEligible) {
                 <thead>
                     <tr>
                         <th style="width: 64px;">Select</th>
-                        <th>Code</th>
+                        <th style="width: 120px;">Code</th>
                         <th>Descriptive Title</th>
-                        <th>Fee</th>
-                        <th>Slots</th>
+                        <th style="width: 140px; white-space: nowrap;">Fee</th>
+                        <th style="width: 100px; white-space: nowrap;">Slots</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($subjects as $subj):
+                    <?php 
+                    function getDynamicFee($total, $available) {
+                        $enrolled = (int)$total - (int)$available;
+                        if ($enrolled <= 0) {
+                            return 25000.00;
+                        }
+                        return 25000.00 / $enrolled;
+                    }
+
+                    foreach($subjects as $subj):
                         $enrolled = $subj['total_slots'] - $subj['available_slots'];
                         $isFull = $subj['available_slots'] <= 0;
+                        $fee = getDynamicFee($subj['total_slots'], $subj['available_slots']);
                     ?>
                     <tr class="<?php echo $isFull ? 'text-muted' : ''; ?>">
                         <td>
-                            <input type="checkbox" class="subject-cb" value="<?php echo $subj['fee']; ?>" data-id="<?php echo $subj['id']; ?>" <?php echo $isFull ? 'disabled' : ''; ?> onchange="calculateTotal()">
+                            <input type="checkbox" class="subject-cb" value="<?php echo $fee; ?>" data-id="<?php echo $subj['id']; ?>" <?php echo $isFull ? 'disabled' : ''; ?> onchange="calculateTotal()">
                         </td>
                         <td style="font-weight: 800; color: <?php echo $isFull ? 'var(--ink-500)' : 'var(--tup-maroon)'; ?>;"><?php echo htmlspecialchars($subj['subject_code']); ?></td>
                         <td><?php echo htmlspecialchars($subj['subject_title']); ?></td>
-                        <td>&#8369; <?php echo number_format($subj['fee'], 2); ?></td>
-                        <td>
+                        <td style="white-space: nowrap;">&#8369; <?php echo number_format($fee, 2); ?></td>
+                        <td style="white-space: nowrap;">
                             <?php if($isFull): ?>
                                 <span class="slots-badge full" style="margin-right: 0.5rem;">Full</span>
                                 <span style="font-size: 0.85rem; font-weight: 600; color: var(--ink-500);"><?php echo $enrolled; ?>/<?php echo $subj['total_slots']; ?></span>
