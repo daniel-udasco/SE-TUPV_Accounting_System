@@ -1716,3 +1716,386 @@ textarea.form-control {
   opacity: 0.9;
 }
 
+/* Admin console */
+.admin-body {
+  background:
+    linear-gradient(180deg, rgba(16, 17, 20, 0.03), transparent 18rem),
+    var(--bg-color);
+}
+
+.admin-sidebar {
+  background: linear-gradient(180deg, #151821, #202431);
+  border-right: 0;
+}
+
+.admin-sidebar .brand-name,
+.admin-sidebar .sidebar-menu li a,
+.admin-sidebar .sidebar-menu i,
+.admin-sidebar .brand-subtitle {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.admin-sidebar .sidebar-menu li a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.admin-sidebar .sidebar-menu li.active a {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.08));
+  color: #ffffff;
+  box-shadow: inset 3px 0 0 #d6b56d;
+}
+
+.admin-sidebar .sidebar-footer,
+.admin-sidebar .sidebar-header {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.admin-topbar {
+  border-bottom-color: #cfd5df;
+}
+
+.admin-content {
+  max-width: 1360px;
+}
+
+.admin-eyebrow {
+  color: #6e5723;
+}
+
+.admin-btn {
+  background: #202431;
+  color: #ffffff;
+  box-shadow: 0 8px 18px rgba(32, 36, 49, 0.18);
+}
+
+.admin-btn:hover {
+  background: #11141c;
+  color: #ffffff;
+}
+
+.admin-avatar,
+.admin-metric i {
+  background: linear-gradient(145deg, #202431, #6e5723);
+}
+
+.admin-login-page {
+  background:
+    radial-gradient(circle at top left, rgba(214, 181, 109, 0.18), transparent 30rem),
+    linear-gradient(135deg, #f8fafc, #eef1f6 58%, #e7ebf2);
+}
+
+.admin-login-nav,
+.admin-login-card {
+  border-color: rgba(32, 36, 49, 0.16);
+}
+
+.admin-hero {
+  background:
+    linear-gradient(135deg, rgba(32, 36, 49, 0.08), rgba(214, 181, 109, 0.16)),
+    var(--bg-card);
+}
+
+.admin-command-panel {
+  align-self: stretch;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  background: #202431;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.command-title {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.command-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.command-row span {
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.command-row strong {
+  font-size: 1.2rem;
+}
+
+.admin-two-column {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+  gap: 1.25rem;
+}
+
+.student-admin-grid {
+  grid-template-columns: minmax(320px, 0.78fr) minmax(0, 1.22fr);
+}
+
+.stacked-panels {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.compact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.compact-list-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  color: var(--text-main);
+}
+
+.compact-list-item span {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.admin-filter form {
+  align-items: end;
+}
+
+.filter-grow {
+  flex: 1 1 260px;
+}
+
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.admin-form-grid.two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.compact-control {
+  min-width: 118px;
+  padding: 0.45rem 0.55rem;
+  font-size: 0.82rem;
+}
+
+.compact-note {
+  min-width: 180px;
+  min-height: 62px;
+  padding: 0.5rem;
+  font-size: 0.82rem;
+}
+
+.compact-btn {
+  min-height: 34px;
+  padding: 0.45rem 0.65rem;
+  font-size: 0.78rem;
+}
+
+.student-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.student-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--line);
+  color: var(--text-main);
+}
+
+.student-row:hover,
+.student-row.active {
+  background: rgba(32, 36, 49, 0.05);
+  color: var(--text-main);
+}
+
+.student-row span {
+  display: block;
+  margin-top: 0.18rem;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.checkbox-row {
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.feedback-admin-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.feedback-admin-card p {
+  overflow-wrap: anywhere;
+}
+
+.feedback-action-row {
+  display: flex;
+  gap: 0.65rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.admin-info-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.admin-preview-card {
+  margin-bottom: 0.75rem;
+}
+
+.archive-sheet {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-xs);
+}
+
+.archive-heading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--text-main);
+}
+
+.archive-heading img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.archive-heading h1 {
+  font-size: 1.05rem;
+}
+
+.archive-heading h2 {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.archive-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.archive-summary div {
+  padding: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+}
+
+.archive-summary span {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.archive-table th,
+.archive-table td {
+  font-size: 0.8rem;
+  padding: 0.65rem;
+}
+
+.archive-signatures {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4rem;
+  margin-top: 3rem;
+}
+
+.archive-signatures div {
+  border-top: 1px solid var(--text-main);
+  padding-top: 0.45rem;
+  text-align: center;
+}
+
+.archive-signatures span {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+@media (max-width: 1100px) {
+  .admin-two-column,
+  .student-admin-grid,
+  .feedback-admin-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-form-grid,
+  .admin-form-grid.two,
+  .archive-summary {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media print {
+  body,
+  [data-theme="dark"] body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .sidebar,
+  .topbar,
+  .footer,
+  .print-hidden {
+    display: none !important;
+  }
+
+  .wrapper,
+  .main-content,
+  .content-area {
+    display: block;
+    max-width: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .archive-sheet {
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  th,
+  td {
+    color: #000000 !important;
+    border-color: #999999 !important;
+  }
+}

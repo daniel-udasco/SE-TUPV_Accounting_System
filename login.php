@@ -64,13 +64,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="navbar-links">
             <a href="info.php">Information Board</a>
             <a href="info.php#contact">Contact Us</a>
+            <a href="admin_login.php">Staff Login</a>
         </div>
     </nav>
 
     <main class="login-main">
         <section class="login-copy">
             <span class="eyebrow"><i class="ph ph-shield-check"></i> Student accounting portal</span>
-            <h1>Payments, receipts, and campus materials in one workspace.</h1>
+            <h1>Payments & Transactions, now in a Digital Platform.</h1>
             <p>Access your student dashboard to settle approved fees, apply for summer class payments, reserve official merchandise, and review your transaction history.</p>
         </section>
 
@@ -87,12 +88,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form action="login.php" method="POST">
                 <div class="form-group">
                     <label for="studentId" class="form-label">Student ID Number</label>
-                    <input type="text" id="studentId" name="student_id" class="form-control" placeholder="e.g. TUPV-23-0050" required value="<?php echo htmlspecialchars($_COOKIE['remember_me'] ?? ''); ?>">
+                    <input type="text" id="studentId" name="student_id" class="form-control" placeholder="Enter your Student ID" required value="<?php echo htmlspecialchars($_COOKIE['remember_me'] ?? ''); ?>">
                 </div>
 
                 <div class="form-group">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter your access key" required>
                 </div>
 
                 <div class="form-group d-flex justify-content-between align-items-center mb-4 gap-2">

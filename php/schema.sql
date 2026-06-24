@@ -27,8 +27,36 @@ CREATE TABLE IF NOT EXISTS transactions (
     amount DECIMAL(10, 2) NOT NULL,
     payment_method ENUM('gcash', 'bank', 'otc') NOT NULL,
     status ENUM('pending', 'completed', 'failed') DEFAULT 'pending',
+    processed_by INT NULL,
+    admin_note TEXT NULL,
+    processed_at TIMESTAMP NULL,
     transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- Accounting Staff Table
+CREATE TABLE IF NOT EXISTS accounting_staff (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    role VARCHAR(80) NOT NULL DEFAULT 'Accounting Staff',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Public Office Info Board Settings
+CREATE TABLE IF NOT EXISTS office_info (
+    id INT PRIMARY KEY,
+    office_name VARCHAR(120) NOT NULL,
+    location TEXT NOT NULL,
+    operating_hours VARCHAR(160) NOT NULL,
+    services TEXT NOT NULL,
+    email VARCHAR(120) NOT NULL,
+    phone VARCHAR(80) NOT NULL,
+    facebook_url VARCHAR(255) NOT NULL,
+    messenger_url VARCHAR(255) NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 -- Products/Materials Table
@@ -87,6 +115,24 @@ INSERT IGNORE INTO users (student_id, password_hash, first_name, last_name, cour
 ('TUPV-23-0058', '$2y$10$ZJxHVMr6wDJzsSa3pXzQU.fwKx6hE1hi6cwqQ/SbWxggXltjJXX7u', 'Desiree', 'Valois', 'BET T09-A', NULL, TRUE, FALSE),
 ('TUPV-23-0059', '$2y$10$XQ91dI9Et3I8wjQBFA0AbOEHjrVzVONTVtiz6xSMsK/bHzSb.yJv.', 'Tovi', 'Macalipsay', 'BET T09-A', NULL, FALSE, FALSE),
 ('TUPV-23-0060', '$2y$10$yXQxsYpgnjo0ebOa5q5/gOd7VOL6LjrjVDu5QZaSgS4J8PrfaqXX6', 'Jared', 'Antiporda', 'BET T05-B', NULL, FALSE, FALSE);
+
+-- Accounting staff usernames are first names and passwords are last names.
+INSERT IGNORE INTO accounting_staff (username, password_hash, first_name, last_name, role) VALUES
+('celeste', '$2y$10$mVgUk8QOyCvoLleN2Nt9n.E8wXrfU1QrRamLFcQniR/Im6EBFdR4y', 'Celeste', 'Delumpa', 'Accountant III / Head, Accounting Office'),
+('jazer', '$2y$10$2N6FgZlMjsTLiFjLpWkJ4O4Oft4fiHPz1lDa4WSPzQSb/UNUP0Uqq', 'Jazer', 'Frias', 'Accountant II'),
+('jorjet', '$2y$10$Zkm6Q8FQ0O6GIjJhHiTxqO.hRqFQJWZets0qh/xLFPnadNPYI5nx2', 'Jorjet', 'Abad', 'Administrative Aide VI'),
+('romena', '$2y$10$8wCSr0oVrOt.uu5NQPIRIOJk9dprH8mdWl.NhYmjViHxK7ElG2QRW', 'Romena', 'Esidenio', 'Administrative Aide III');
+
+INSERT IGNORE INTO office_info (id, office_name, location, operating_hours, services, email, phone, facebook_url, messenger_url) VALUES
+(1,
+ 'TUPV Accounting Office',
+ 'Admin Building, Ground Floor, Room 101, TUP Visayas, Capt. Sabi St., Brgy. Zone 12, Talisay City.',
+ 'Monday to Friday, 8:00 AM to 5:00 PM. Closed during weekends and declared holidays.',
+ 'Fee assessment, payment confirmation, student receipts, summer class payments, and university materials.',
+ 'accountingtupv@gmail.com',
+ '(034) 445 2177',
+ 'https://www.facebook.com/tupvbusinessoffice',
+ 'https://www.messenger.com/tupvbusinessoffice/');
 
 INSERT IGNORE INTO products (name, price, stock_quantity) VALUES
 ('PE Uniform (Set)', 600.00, 100),
